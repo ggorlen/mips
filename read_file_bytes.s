@@ -22,6 +22,7 @@ main:
     li $s4 0  # bytes read
 
 read_loop:
+
     # read chunk from file
     li $v0 14     # syscall for reading from file
     move $a0 $s0  # file descriptor 

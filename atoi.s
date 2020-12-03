@@ -3,38 +3,11 @@
 .globl main
 .text
 main:
-    la $s0 s # string
-    li $s1 0 # index
-    li $s2 0 # result
+    la $a0 s
+    jal atoi
 
-loop:
-    # load s[i]
-    add $s4 $s1 $s0
-    lb $s3 ($s4)
-
-    # break if null
-    beqz $s3 done
-
-    # convert ascii to digit
-    addi $s3 $s3 -48
-
-    # result *= 10
-    li $s5 10
-    mult $s2, $s5
-    mflo $v0
-    move $s2 $v0
-
-    # result += digit
-    add $s2 $s2 $s3
-
-    # index++
-    addi $s1 $s1 1
-
-    b loop
-
-done:
     # print number
-    move $a0 $s2
+    move $a0 $v0
     li $v0 1
     syscall
 
@@ -46,4 +19,36 @@ done:
     # exit the program
     li $v0 10
     syscall
+
+atoi:
+    move $s0 $a0
+    li $s1 0 # index
+    li $s2 0 # result
+
+atoi_loop:
+    # load s[i]
+    add $s4 $s1 $s0
+    lb $s3 ($s4)
+
+    # break if null
+    beqz $s3 atoi_done
+
+    # convert ascii to digit
+    addi $s3 $s3 -48
+
+    # result *= 10
+    li $s4 10
+    mul $s2 $s2 $s4
+
+    # result += digit
+    add $s2 $s2 $s3
+
+    # index++
+    addi $s1 $s1 1
+
+    b atoi_loop
+
+atoi_done:
+    move $v0 $s2
+    j $ra
 
