@@ -21,9 +21,15 @@ main:
     syscall
 
 atoi:
-    move $s0 $a0
-    li $s1 0 # index
-    li $s2 0 # result
+    addi $sp $sp -20
+    sw $s0 ($sp)
+    sw $s1 4($sp)
+    sw $s2 8($sp)
+    sw $s3 12($sp)
+    sw $s4 16($sp)
+    move $s0 $a0  # addr of string number
+    li $s1 0      # index
+    li $s2 0      # result
 
 atoi_loop:
     # load s[i]
@@ -50,5 +56,11 @@ atoi_loop:
 
 atoi_done:
     move $v0 $s2
+    lw $s0 ($sp)
+    lw $s1 4($sp)
+    lw $s2 8($sp)
+    lw $s3 12($sp)
+    lw $s4 16($sp)
+    addi $sp $sp 20
     j $ra
 
