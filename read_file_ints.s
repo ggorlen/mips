@@ -56,11 +56,13 @@ is_newline:
     li $s7 0
     sb $s7 ($s6)
 
-    #lb $t0 buffer($t2)   #loading value
+    # convert line to number
+    move $a0 $s3
+    jal atoi
 
     # print number
-    move $a0 $s3
-    li $v0 4
+    move $a0 $v0
+    li $v0 1
     syscall
 
     # print newline

@@ -30,8 +30,8 @@ read_loop:
     blez $v0 read_done
 
     # naively handle exceeding line size by exiting
-    addi $s4 $s3 -1024
-    bgez $s4 read_done
+    slti $t0 $s3 1024
+    beqz $t0 read_done
 
     # if current byte is a newline, consume line
     lb $s4 ($s1)
