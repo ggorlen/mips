@@ -14,8 +14,8 @@ main:
     move $a0, $t0
     syscall
 
-    addi $a0, $0, 0xA 
-    addi $v0, $0, 0xB 
+    addi $a0, $0, 10
+    addi $v0, $0, 11
     syscall
 
     li $v0, 10

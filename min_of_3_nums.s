@@ -1,7 +1,5 @@
 .data 
-prompt1: .asciiz "Enter an integer: " 
-prompt2: .asciiz "Enter an integer: " 
-prompt3: .asciiz "Enter an integer: " 
+prompt: .asciiz "Enter an integer: " 
 smallest: .asciiz "\nThe smallest integer is: "
 
 .globl main
@@ -9,7 +7,7 @@ smallest: .asciiz "\nThe smallest integer is: "
 main:
 
     li $v0, 4 
-    la $a0, prompt1 
+    la $a0, prompt
     syscall 
     
     li $v0, 5 
@@ -17,7 +15,6 @@ main:
     move $t0,$v0 
     
     li $v0, 4 
-    la $a0, prompt2 
     syscall 
     
     li $v0, 5 
@@ -25,7 +22,6 @@ main:
     move $t1,$v0 
     
     li $v0, 4 
-    la $a0, prompt3 
     syscall 
     
     li $v0, 5 

@@ -56,7 +56,7 @@ set_remainder:
     #bne $t1, $t3, display
     #li $t3, 0
 
-display:
+#display:
 
     # show the quotient
     li $v0, 4 

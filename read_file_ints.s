@@ -38,8 +38,8 @@ read_loop:
 
     # if it's a newline, start a new number
     lb $s5 ($s2)
-    addi $s5 $s5 -10
-    beqz $s5 is_newline
+    li $t0 10
+    beq $s5 $t0 consume_number
 
     # otherwise, append byte to number
     lb $s5 ($s2)
@@ -51,7 +51,7 @@ read_loop:
 
     b read_loop
 
-is_newline:
+consume_number:
 
     # null terminate buff
     addi $s6 $s6 1
@@ -63,10 +63,10 @@ is_newline:
     jal atoi
 
     # allocate memory
-    move $a0 $v0
-    li $a0 1  # size
-    li $v0 9  # sbrk
-    syscall   # allocated address is in $v0
+    #move $a0 $v0
+    #li $a0 1  # size
+    #li $v0 9  # sbrk
+    #syscall   # allocated address is in $v0
     #move $s0 $v0
 
     # print number
