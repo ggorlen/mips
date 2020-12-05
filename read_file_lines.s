@@ -1,7 +1,7 @@
 .data  
-    fin: .asciiz "read_file_lines.s"
-    buffer: .space 1
-    line: .space 1024
+fin: .asciiz "read_file_lines.s"
+buffer: .space 1
+line: .space 1024
 .globl main
 .text
 main:
@@ -35,8 +35,8 @@ read_loop:
 
     # if current byte is a newline, consume line
     lb $s4 ($s1)
-    addi $s5 $s4 -10
-    beqz $s5 consume_line
+    li $t0 10
+    beq $s4 $t0 consume_line
 
     # otherwise, append byte to line
     add $s5 $s3 $s2

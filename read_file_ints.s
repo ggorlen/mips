@@ -1,9 +1,11 @@
+# reads a file of integers
+# TODO add to dynamic array
+
 .data  
     fin: .asciiz "read_file_input.txt"
     newline: .asciiz "\n"
     buffer: .space 1
     number: .space 16
-    #numbers: .word 
 .globl main
 .text
 main:
@@ -59,6 +61,13 @@ is_newline:
     # convert line to number
     move $a0 $s3
     jal atoi
+
+    # allocate memory
+    move $a0 $v0
+    li $a0 1  # size
+    li $v0 9  # sbrk
+    syscall   # allocated address is in $v0
+    #move $s0 $v0
 
     # print number
     move $a0 $v0
