@@ -62,5 +62,5 @@ atoi_done:
     lw $s3 12($sp)
     lw $s4 16($sp)
     addi $sp $sp 20
-    j $ra
+    jr $ra
 

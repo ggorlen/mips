@@ -3,9 +3,8 @@
 
 .data  
     fin: .asciiz "read_file_input.txt"
-    newline: .asciiz "\n"
     buffer: .space 1
-    number: .space 16
+    line: .space 16
 .globl main
 .text
 main:
@@ -18,7 +17,7 @@ main:
     move $s0 $v0  # save the file descriptor 
 
     la $s2 buffer
-    la $s3 number
+    la $s3 line
     li $s4 0  # bytes read
 
 read_loop:
@@ -39,9 +38,9 @@ read_loop:
     # if it's a newline, start a new number
     lb $s5 ($s2)
     li $t0 10
-    beq $s5 $t0 consume_number
+    beq $s5 $t0 consume_line
 
-    # otherwise, append byte to number
+    # otherwise, append byte to line
     lb $s5 ($s2)
     add $s6 $s4 $s3
     sb $s5 ($s6)
@@ -51,12 +50,11 @@ read_loop:
 
     b read_loop
 
-consume_number:
+consume_line:
 
     # null terminate buff
     addi $s6 $s6 1
-    li $s7 0
-    sb $s7 ($s6)
+    sb $zero ($s6)
 
     # convert line to number
     move $a0 $s3
@@ -137,5 +135,5 @@ atoi_done:
     lw $s3 12($sp)
     lw $s4 16($sp)
     addi $sp $sp 20
-    j $ra
+    jr $ra
 

@@ -51,8 +51,7 @@ consume_line:
 
     # null terminate line
     add $s5 $s3 $s2
-    li $s4 0
-    sb $s4 ($s5)
+    sb $zero ($s5)
 
     # reset bytes read
     li $s3 0
