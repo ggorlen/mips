@@ -1,3 +1,5 @@
+# TODO incomplete; need bigger numbers
+
 .globl main
 .text
 main: 

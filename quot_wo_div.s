@@ -1,4 +1,4 @@
-# https://stackoverflow.com/questions/9805492
+# https://stackoverflow.com/questions/9805492/how-to-write-division-remainder-code-without-mult-or-div-instructions-in-mips
 
 .data
 dividend:    .asciiz "Enter dividend: "

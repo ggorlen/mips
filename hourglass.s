@@ -1,3 +1,5 @@
+# https://stackoverflow.com/questions/65146861/printing-an-hourglass-in-mips32/65152123#65152123
+
 .data
 prompt: .asciiz "enter a number: "
 .text
